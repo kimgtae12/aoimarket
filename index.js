@@ -34,7 +34,7 @@ app.use('/iteminfo', itemInfo);
 const itemSubmmit = require('./route/item/itemSubmmit');
 app.use('/itemSubmmit', itemSubmmit);
 
-const port = 3400;
+const port = process.env.PORT;
 app.listen(port, function () {
     console.log('server on! http://localhost:' + port);
 });
