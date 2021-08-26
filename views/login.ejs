@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('include/header') %>
+        <link rel="stylesheet" href="../../public/stylesheet/subStyle.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <%- include('include/toparea') %>
+            <div class="middle_form">
+                <h1 id="login_title">로그인</h1>
+                <hr id="horizon_line">
+
+                <div class="login_form">
+                    <form method="post" action="login">
+                        <table class="login_table">
+                            <tr>
+                                <td>아이디</td>
+                                <td><input type="text" name="uId" id="user_id" required /></td>
+                            </tr>
+                            <tr>
+                                <td>비밀번호</td>
+                                <td><input type="password" name="uPw" id="user_pw" required /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><input id="loginButton" type="submit" value="로그인"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="division">
+                    <p>또는</p>
+                </div>
+                <div class="snslogin_form">
+                    <table class="snslogin_table">
+                        <tr>
+                            <td onClick="location.href='#'">
+                                <img class="sns_icon" src="../public/img/sns/circle_naver.png" />
+                                <p id="naver">네이버</p>
+                                <p>로그인</p>
+                            </td>
+                            <td onClick="location.href='#'">
+                                <img class="sns_icon" src="../public/img/sns/circle_facebook.png" />
+                                <p id="facebook">페이스북</p>
+                                <p>로그인</p>
+                            </td>
+                            <td onClick="location.href='#'">
+                                <img class="sns_icon" src="../public/img/sns/circle_kakao.png" />
+                                <p id="kakao">카카오톡</p>
+                                <p>로그인</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <%- include('include/header') %>
+        <script src="../../public/javascript/bannerSlide.js" type="text/javascript"></script>
+        <script>
+            function itemSubmmit() {
+                location.href = '/itemSubmmit';
+            }
+        </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <%- include('include/toparea') %>
+            <article class="baner_area">
+                <section class="img_con">
+                    <% for(var i=0; i<=2; i++){ %>
+                        <img class="baner now" src="<%= imgpath[i].bannerpath%><%= imgpath[i].name%>">
+                        <% } %>
+                </section>
+                <section class="prev">
+                    <p id="prevbt">&#10094;</p>
+                </section>
+                <section class="next">
+                    <p id="nextbt">&#10095;</p>
+                </section>
+            </article>
+
+            <div class="item_area">
+                <span class="list_title first">아오이</span>
+                <span class="list_title second">추천상품</span>
+                <article class="item_list">
+                    <% for(var i=0; i<=data.length-1; i++) { %>
+                        <section class="item_info">
+
+                            <a href="/iteminfo?itemid=<%=data[i].item_id%>">
+                                <div class="item_img">
+                                    <img src="<%= data[i].item_firstimg %>" />
+                                </div>
+                                <div class="item_title">
+                                    <p id="item_name">
+                                        <%= data[i].item_title %>
+                                    </p>
+                                    <p id="item_price">
+                                        <%= price[i] %>원
+                                    </p>
+                                </div>
+                            </a>
+                        </section>
+                        <% } %>
+                </article>
+            </div>
+            <% if(login_id) { %>
+                <div class="regi_item">
+                    <button id="regi_button" onClick='itemSubmmit()'>상품등록</button>
+                </div>
+                <% } %>
+    </div>
+</body>
+
+</html>

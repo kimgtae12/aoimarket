@@ -1,0 +1,29 @@
+<header>
+    <div class="toparea">
+        <span class="top_item menu">
+            <p id="menu">menu</p>
+        </span>
+        <span class="top_item logo">
+            <a href="javascript:moveMain()">
+                <h1 id="logo">
+                    아오이 마켓
+                </h1>
+            </a>
+        </span>
+        <span class="top_item login">
+            <% if(!login_id){ %>
+                <p id="login_area"><a href="/login">로그인</a> | <a href="/join">회원가입</a></p>
+                <% } else{ %>
+                    <p id="login_area">
+                        <a href="/info?<%=login_id%>">마이페이지</a> | <a href="/logout">로그아웃</a>
+                    </p>
+                    <% } %>
+        </span>
+
+    </div>
+    <section class=" search_form">
+        <form method="GET">
+            <input id="search" type="text" placeholder="원하는 물품을 검색해보세요.">
+        </form>
+    </section>
+</header>

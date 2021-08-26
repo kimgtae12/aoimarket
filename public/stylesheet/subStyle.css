@@ -1,0 +1,257 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.middle_form #login_title{
+    margin-top:30px;
+    text-align: center;
+    font-size:20px;
+    font-family:'sans-serif';
+    color:#707070;
+}
+
+#horizon_line{
+    margin-top:20px;
+    width:100px;
+    position:relative;
+    background-color:#e2e2e2;
+    border:1px solid #e2e2e2;
+}
+
+.login_form{
+    width:500px;
+    margin:0 auto;
+    padding:0;
+    margin-top:15px;
+    text-align: center;
+}
+
+.login_table{
+    margin:0 auto;
+    padding:0;
+    border-collapse: separate;
+    border-spacing: 10px 15px;
+}
+
+.login_table tr td{
+    margin-left:30px;
+    font-size:15px;
+    color:#707070;
+}
+
+.login_table tr{
+    margin-top:10px;
+}
+
+.login_table tr td input{
+    width:200px;
+    border-radius: 0;
+    border:1.5px solid #CCCBCB;
+}
+
+#loginButton{
+    width:280px;
+    height: 30px;
+    border: none;
+    background-color: #50BCDF;
+    color:white;
+    font-family:'sans-serif';
+    font-weight: bold;
+    cursor: pointer;
+}
+.division{
+    margin-top:15px;
+    font-size:15px;
+    font-family:'sans-serif';
+    text-align:center;
+    color:#707070;
+    font-weight: bold;
+}
+
+.snslogin_form{
+    width:500px;
+    margin:0 auto;
+    padding:0;
+    text-align: center;
+    margin-top:20px;
+}
+.snslogin_table{
+    margin:0 auto;
+    padding:0;
+    border-collapse: separate;
+    border-spacing: 40px 0;
+}
+.snslogin_table tr td{
+    font-size:13px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.sns_icon{
+    width:60px;
+    height:60px;
+    margin-bottom:3px;
+}
+#naver{
+    color:#03C75A;
+}
+#facebook{
+    color:#3B589E;
+}
+#kakao{
+    color:#FFE600;
+}
+
+
+/*join_area */
+
+.join_form{
+    width:500px;
+    margin:0 auto;
+    padding:0;
+    margin-top:30px;
+    text-align: center;
+}
+
+.form_line{
+    width:360px;
+    height: 40px;
+    margin:0 auto;
+    padding:0;
+    display:grid;
+    margin-bottom:15px;
+    grid-template-columns: 110px 250px;
+}
+.form_line p{
+    float:left;
+    font-size:15px;
+    color:#707070;
+    text-align:left;
+    font-family:'sans-serif';
+}
+.form_line input{
+    width:250px;
+    height: 16px;
+    border-radius: 0;
+    border:2px solid #CCCBCB;
+}
+
+#join_label{
+    font-size:10px;
+    color:#CCCBCB;
+}
+#password_eq{
+    font-size:10px;
+    color:#CCCBCB;
+    color: green;
+}
+#password_neq{
+    font-size:10px;
+    color:#CCCBCB;
+    color:red;
+}
+
+.join_button{
+    width:180px;
+    height: 30px;
+    font-family:'sans-serif';
+    font-size:15px;
+    cursor: pointer;
+}
+
+.cancle{
+    background-color:#C2BFBF;
+    border:1px solid #C2BFBF;
+    border-radius: 0;
+    color:white;
+    font-weight: bold;
+}
+.access{
+    background-color:#3498DB;
+    border:1px solid #3498DB;
+    border-radius: 0;
+    color:white;
+    font-weight: bold;
+}
+
+.input_form{
+    text-align: left;
+    width:400px;
+}
+.join_email{
+    width:100px !important;
+}
+
+
+
+/****** item input *****/
+#submmitForm{
+    width:900px;
+    margin:0 auto;
+    padding:0;
+    margin-top:30px;
+}
+
+
+.input_img_area{
+
+    min-height:230px;
+    position:relative;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap:20px;
+    column-gap:20px;
+}
+.img_selector{
+    position:absolute;
+    width:230px;
+    height: 230px;
+    background-image:url('../img/item/input_img.jpg');
+    cursor:pointer;
+    border: 3px solid #50BCDF;
+}
+
+.submmit_img_list{
+    width:230px;
+    height:230px;
+}
+
+#submit_title{
+    float:left;
+    margin-right:20px;
+    font-size:15px;
+    color:gray;
+    font-weight: bold;
+}
+.input{
+    margin-bottom:30px;
+    display:grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+#iteminputform{
+    border: 3px solid #50BCDF;
+    border-radius: 0; 
+    padding-left:10px;
+    height:30px;
+}
+
+#iteminputform_info{
+    border: 3px solid #50BCDF;
+    border-radius: 0; 
+    padding-left:10px;
+    height:100px;
+    resize:none;
+}
+.submit_button_area{
+    text-align: center;
+}
+
+#preview_img{
+    width:230px;
+    height: 230px;
+    float:left;
+    border:1px solid gray;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('include/header') %>
+        <script src="../public/javascript/joinScript.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="../../public/stylesheet/subStyle.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <%- include('include/toparea') %>
+            <article class="middle_form">
+                <h1 id="login_title">회원가입</h1>
+                <hr id="horizon_line">
+
+                <section class="join_form">
+                    <form method="post" action="/join/join_ok">
+                        <div class="form_line">
+                            <p>이름</p>
+                            <div>
+                                <div class="input_form">
+                                    <input type="text" name="uName" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_line">
+                            <p>아이디</p>
+                            <div>
+                                <div class="input_form">
+                                    <input type="text" name="uId" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_line">
+                            <p>비밀번호</p>
+                            <div>
+                                <input type="password" id="firstPsw" name="uPw" required>
+                                <p id="join_label">비밀번호는 공백없이 최소 8자 이상 입력해주세요.</p>
+                            </div>
+                        </div>
+                        <div class="form_line">
+                            <p>비밀번호 확인</p>
+                            <div>
+                                <input type="password" id="secondPsw" name="uPwEq" required>
+                                <p id="password_eq">비밀번호가 일치합니다!</p>
+                                <p id="password_neq">비밀번호가 일치하지 않습니다.</p>
+                            </div>
+                        </div>
+                        <div class="form_line">
+                            <p>이메일</p>
+                            <div class="input_form">
+                                <input type="text" class="join_email" id="uEmailFirst" name="uEmailFirst" required>
+                                @
+                                <input type="text" class="join_email" id="uEmailSecond" name="uEmailSecond" required>
+                                <select class="join_email" id="select_id">
+                                    <option value="self">직접 입력</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="nate.com">nate.com</option>
+                                    <option value="gmail.com">gmail.com</option>
+                                    <option value="kakao.com">kakao.com</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="submit_button_area">
+                            <input type="button" id="home_button" class="join_button cancle" value="취소">
+                            <input type="submit" class="join_button access" value="회원가입">
+                        </div>
+                    </form>
+                </section>
+            </article>
+    </div>
+</body>
+
+</html>
