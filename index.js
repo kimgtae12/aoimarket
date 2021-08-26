@@ -4,8 +4,13 @@ const dbcon = require('./db/config');
 const fs = require('fs');
 const ejs = require('ejs');
 const path = require('path');
+const http = require('http');
 
 const app = express();
+
+setInterval(function () {
+    http.get("http://aoimarket.herokuapp.com");
+}, 600000);
 
 app.use("/public", express.static('public'));
 
