@@ -26,6 +26,7 @@ create table itemlist(
     item_kate varchar(30)
 );
 
+
 alter table itemlist add column item_selling varchar(15);
 alter table itemlist add column item_coment text;
 alter table itemlist add column item_kate varchar(30);
@@ -33,6 +34,9 @@ commit;
 update itemlist set item_stat='양호',item_coment='hello!',item_kate='인형' where item_trade='직거래';
 
 update itemlist set item_selling = '판매완료' where item_id='2';
+update itemlist set item_price =1900000 where item_id='3';
+update itemlist set item_stat = '불량' where item_id='4';
+alter table itemlist change item_coment item_comment text;
 
 select * from itemlist;
 

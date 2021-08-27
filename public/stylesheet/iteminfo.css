@@ -34,7 +34,7 @@
     width:800px;
     display:grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(6,65px);
+    grid-template-rows: 65px 65px 50px 50px 65px auto ;
 }
 
 .item_info_imgarea{
@@ -100,11 +100,23 @@
 .item_info_statarea{
     grid-column : 2/3;
     grid-row : 3/4;
+    font-size:15px;
+    color:#707070;
 }
+#item_stat{
+    font-weight: bold;
+}
+
 .item_info_tradearea{
     grid-column : 2/3;
     grid-row : 4/5;
+    font-size:15px;
+    color:#707070;
 }
+#item_trade{
+    font-weight: bold;;
+}
+
 .item_info_chatarea{
     grid-column : 2/3;
     grid-row : 5/6;
