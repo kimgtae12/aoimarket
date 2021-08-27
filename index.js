@@ -6,11 +6,19 @@ const ejs = require('ejs');
 const path = require('path');
 const http = require('http');
 
-const app = express();
+
 
 setInterval(function () {
     http.get("http://aoimarket.herokuapp.com");
 }, 600000);
+
+const app = express();
+
+/**
+ * git add .
+ * git commit "any"
+ * git push heroku main
+ */
 
 app.use("/public", express.static('public'));
 
@@ -40,6 +48,8 @@ const itemSubmmit = require('./route/item/itemSubmmit');
 app.use('/itemSubmmit', itemSubmmit);
 
 const port = process.env.PORT;
+
+//const port = 3400;
 app.listen(port, function () {
     console.log('server on! http://localhost:' + port);
 });

@@ -3,12 +3,71 @@
 
 <head>
     <%- include('../include/header') %>
-        <script src="/public/javascript/bannerSlide.js" type="text/javascript"></script>
+        <link href="/public/stylesheet/iteminfo.css" rel="stylesheet">
+        <script src="/public/javascript/itemInfo.js" type='text/javascript'></script>
 </head>
 
 <body>
     <div class="wrapper">
         <%- include('../include/toparea') %>
+            <article class="info_form">
+                <span class="kategorie">전체상품 - </span><span class="kategorie">카테고리1 - </span>
+                <a href="#"><span class="kategorie kate_result">카테고리2</span></a>
+                <hr id="division_line">
+                <% if(item_info){ %>
+                    <section class="item_moreinfo">
+                        <div class="item_info_imgarea">
+                            <div id='completearea'>
+                            </div>
+                            <img id="select_img" src="<%= item_info[0].item_firstimg %>" />
+                            <div class="other_imgarea">
+                                <span><img class="other_img other_first"
+                                        src="<%= item_info[0].item_firstimg %>" /></span>
+                                <span><img class="other_img other_first"
+                                        src="<%= item_info[0].item_firstimg %>" /></span>
+                                <span><img class="other_img other_first"
+                                        src="<%= item_info[0].item_firstimg %>" /></span>
+                            </div>
+                        </div>
+                        <div class="item_info_titlearea">
+                            <p>
+                                <span id='selling'>
+                                    <%=item_info[0].item_selling %>
+                                </span>
+                                </span>
+                                <%=item_info[0].item_title %>
+                            </p>
+                        </div>
+                        <div class="item_info_pricearea">
+                            <h2>
+                                <%=price[0] %>원
+                            </h2>
+                        </div>
+                        <div class="item_info_statarea">
+                            <p>
+                                <%=item_info[0].item_stat %>
+                            </p>
+                        </div>
+                        <div class="item_info_tradearea">
+                            <p>
+                                <%=item_info[0].item_trade %>
+                            </p>
+                        </div>
+                        <div class="item_info_chatarea">
+                            <p>hello</p>
+                        </div>
+                    </section>
+                    <hr id="division_line">
+                    <section id="item_info_comment">
+                        <h3>상품 설명</h3>
+                        <p>
+                            <%= item_info[0].item_comment %>
+                        </p>
+                    </section>
+                    <% } %>
+            </article>
+
+
 </body>
 
 </html>

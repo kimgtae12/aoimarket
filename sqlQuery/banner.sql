@@ -20,8 +20,24 @@ create table itemlist(
     item_secondimg text,
     item_third text,
     item_trade varchar(10),
-    item_date varchar(99)
+    item_date varchar(99),
+    item_stat varchar(30),
+    item_coment text,
+    item_kate varchar(30)
 );
+
+alter table itemlist add column item_selling varchar(15);
+alter table itemlist add column item_coment text;
+alter table itemlist add column item_kate varchar(30);
+commit;
+update itemlist set item_stat='양호',item_coment='hello!',item_kate='인형' where item_trade='직거래';
+
+update itemlist set item_selling = '판매완료' where item_id='2';
+
+select * from itemlist;
+
+
+drop table itemlist;
 
 alter table itemlist add (item_imgfir TEXT);
 alter table itemlist add (item_imgsec TEXT);
@@ -30,6 +46,7 @@ alter table itemlist drop item_third;
 
 insert into itemlist(item_title,item_admin,item_price,item_firstimg,item_secondimg,item_third,item_trade,item_date) values('hello','admin','12333',null,null,null,'직거래',now());
 
+delete from itemlist where item_title = '핑크뚱이';
 
 
 select max(item_id) from itemlist;
@@ -38,6 +55,8 @@ select * from itemlist;
 
 insert into itemlist values('1','연예인 마스크','kimgtae12','14000','','','','직거래','2021년 08월 24일');
 delete from itemlist where item_admin='kimgtae12';
+
+rollback;
 
 insert into mainBanner values('https://storage.googleapis.com/itemimg/mainBanner/','banner1.jpg');
 insert into mainBanner values('https://storage.googleapis.com/itemimg/mainBanner/','banner2.jpg');

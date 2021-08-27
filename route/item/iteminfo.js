@@ -17,9 +17,31 @@ router.use(session({
 
 router.route('/').get(function (req, res) {
 
-    res.render('item/iteminfo', {
-        login_id: req.session.uid
+    let itemInfoSelect = 'select * from itemlist where item_id = ?';
+    let itemNumber = req.query.itemid;
+
+    dbcon.query(itemInfoSelect, itemNumber, function (err, result, fields) {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        console.log(result);
+
+        let price = [];
+        for (let i = 0; i <= result.length - 1; i++) {
+            price[i] = result[i].item_price.toLocaleString('ko-KR');
+        }
+
+        res.render('item/iteminfo', {
+            login_id: req.session.uid,
+            item_info: result,
+            price: price
+        });
+
     });
+
+
+
 });
 
 
