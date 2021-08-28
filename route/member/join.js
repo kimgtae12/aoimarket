@@ -63,6 +63,7 @@ router.route('/join_ok').post((req, res) => {
     let join_pw = req.body.uPw;
     let join_name = req.body.uName;
     let join_email = req.body.uEmailFirst + "@" + req.body.uEmailSecond;
+    console.log(req.body.uEmailSecond);
     let today = new Date();
     let join_date = today.toLocaleString().toString();
 

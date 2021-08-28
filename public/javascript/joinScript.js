@@ -31,11 +31,12 @@ $(document).ready(function () {
         $('#select_id option:selected').each(function () {
             if ($(this).val() == 'self') {
                 $('#uEmailSecond').val('');
-                $('#uEmailSecond').attr('disabled', false);
+                $('#uEmailSecond').attr('readonly', false);
             }
             else {
                 $("#uEmailSecond").val($(this).text());
-                $("#uEmailSecond").attr('disabled', true);
+                $("#uEmailSecond").attr('readonly', true);
+
             }
         });
     });
