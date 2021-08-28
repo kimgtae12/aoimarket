@@ -72,32 +72,46 @@ router.route('/join_ok').post((req, res) => {
     req.session.email = join_email;
 
     //handler에 이메일과 키값 전송. (email-handler.js에 있는 EmailVerification메소드)
-    handle_email.EmailVerification(join_email, key_for_verify);
+
 
     //sql문 작성.
+    var select_id = "select aId from member where aId = ?";
     var sql_key = "insert into verifykey values('" + join_id + "','" + join_email + "','" + key_for_verify + "')";
     var sql_member = "insert into member values('" + join_id + "','" + join_pw + "','" + join_name + "','" + join_email + "','" + join_date + "','fail')";
 
-    //인증키 테이블에 아이디와 인증키 저장.
-    dbcon.query(sql_key, function (err, result) {
+    dbcon.query(select_id, join_id, function (err, result) {
         if (err) {
-            console.error(err);
-            throw err
-        }
-        console.log('userkey insert complete!');
-        res.end();
-    });
-
-    //유저 정보 저장.
-    dbcon.query(sql_member, function (err, result) {
-        if (err) {
-            console.error(err);
+            console.log(err);
             throw err;
         }
-        console.log("userinfo insert complete!");
-        res.end();
+        if (result.length > 0) {
+            res.write('<script type="text/javascript">alert("중복된 아이디가 존재합니다."); history.back();</script>');
+        }
+        else {
+            handle_email.EmailVerification(join_email, key_for_verify);
+            //인증키 테이블에 아이디와 인증키 저장.
+            dbcon.query(sql_key, function (err, result) {
+                if (err) {
+                    console.error(err);
+                    throw err
+                }
+                console.log('userkey insert complete!');
+                res.end();
+            });
+
+            //유저 정보 저장.
+            dbcon.query(sql_member, function (err, result) {
+                if (err) {
+                    console.error(err);
+                    throw err;
+                }
+                console.log("userinfo insert complete!");
+                res.end();
+            });
+            res.redirect('/emailCheck');
+        }
     });
-    res.redirect('/emailCheck');
+
 });
 
 
