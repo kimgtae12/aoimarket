@@ -127,3 +127,14 @@
     color:gray;
 }
 
+#info_textarea{
+    width:100%;
+    height:200px;
+    border:none;
+    resize: none;
+    font-size:15px;
+}
+
+textarea:focus{
+    outline:none;
+}

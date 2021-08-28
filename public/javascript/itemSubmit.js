@@ -42,14 +42,19 @@ $(document).ready(function () {
 
     //1차 카테고리 선택
     $('.first_kate_list').click(function () {
+        //모든 서브클래스 삭제및 선택요소에 클래스 추가
         $('.first_kate_list').removeClass('first_selected');
         $(this).addClass('first_selected');
 
+        //지정한 값의 텍스트 가져오기.
         select_kate = $(this).text();
+        //2nd kategorie el생성
         let second_kate = "<p class='kategory_title'>" + select_kate + " &#10095;</p><hr class='kate_line'><ul class='kate_ul second_ul'></ul>";
+        //두번째 카테고리 비운후 2nd kategorie 추가
         $('#second_kate').empty();
         $('#second_kate').append(second_kate);
 
+        //두번째 카테고리에 li el 추가
         switch (select_kate) {
             case '남성의류':
                 for (let j = 0; j <= manscloth.length - 1; j++) {
@@ -101,14 +106,15 @@ $(document).ready(function () {
                 break;
         }
 
+        //input box에 1차 카테고리값 올리기.
         $('#item_kate').val(select_kate);
 
+        //두번째 요소 클릭시 이벤트 발생.
         $(document).on('click', '.second_kate_list', function () {
             $('.second_kate_list').removeClass('first_selected');
             $(this).addClass('first_selected');
             let second_kate = $(this).text();
-            console.log(select_kate);
-            console.log(second_kate);
+            //input box에 1차와 2차 카테고리값 올리기.
             $('#item_kate').val(select_kate + ' - ' + second_kate);
         });
     });
