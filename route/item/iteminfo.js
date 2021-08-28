@@ -18,19 +18,26 @@ router.use(session({
 router.route('/').get(function (req, res) {
 
     let itemInfoSelect = 'select * from itemlist where item_id = ?';
+    let itemView = 'update itemlist set item_view = item_view+1 where item_id = ?';
     let itemNumber = req.query.itemid;
+
+    dbcon.query(itemView, itemNumber, function (err, re) {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+    });
 
     dbcon.query(itemInfoSelect, itemNumber, function (err, result, fields) {
         if (err) {
             console.log(err);
             throw err;
         }
-        console.log(result);
-
         let price = [];
         for (let i = 0; i <= result.length - 1; i++) {
             price[i] = result[i].item_price.toLocaleString('ko-KR');
         }
+        console.log(result);
 
         res.render('item/iteminfo', {
             login_id: req.session.uid,

@@ -28,7 +28,7 @@ router.route('/').get(async function (req, res) {
     let test = await getimgList;
 
     let getitemlist = new Promise((resolve, reject) => {
-        dbcon.query('select * from itemlist order by item_id desc', function (error, results, fields) {
+        dbcon.query('select * from itemlist order by item_view desc', function (error, results, fields) {
             if (error) {
                 reject(error);
             }

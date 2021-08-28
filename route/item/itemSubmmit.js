@@ -57,6 +57,14 @@ router.route('/').post(upload.array('img_name'), (req, res) => {
     let item_price = req.body.item_price;
     let item_trade = req.body.item_trade;
     let item_date = today.toLocaleString().toString();
+    let item_stat = req.body.item_stat;
+    let item_comment = req.body.item_info;
+
+    let kate = req.body.item_kate;
+    let split_kate = kate.split(' - ');
+    let item_kate1 = split_kate[0];
+    let item_kate2 = split_kate[1];
+
 
     //Google Cloud Storage Upload
     // The ID of your GCS bucket
@@ -90,7 +98,7 @@ router.route('/').post(upload.array('img_name'), (req, res) => {
     let searchIdx = 'select max(item_id) as max_idx from itemlist'
     let cloudurl = 'https://storage.googleapis.com/itemimgbucket/itemlist/' + req.session.uid + '/';
 
-    let item_first, item_second, item_third;
+    let max_idx, item_first, item_second, item_third;
 
     if (req.files[0]) {
         item_first = cloudurl + req.files[0].filename;
@@ -107,6 +115,9 @@ router.route('/').post(upload.array('img_name'), (req, res) => {
     if (req.files[2]) {
         item_third = cloudurl + req.files[2].filename;
     }
+    else {
+        item_third = null;
+    }
 
 
     dbcon.query(searchIdx, function (err, result) {
@@ -114,8 +125,31 @@ router.route('/').post(upload.array('img_name'), (req, res) => {
             console.error(err);
             throw err;
         }
-        let insertItem = 'insert into itemlist values (?,?,?,?,?,?,?,?,?)';
-        let insertItemKey = [result[0].max_idx + 1, item_title, item_admin, item_price, item_first, item_second, item_third, item_trade, item_date];
+        let insertItem = 'insert into itemlist values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        let max_idx;
+        if (result[0].max_idx == 0) {
+            max_idx = 0;
+        }
+        else {
+            max_idx = result[0].max_idx + 1;
+        }
+
+        let insertItemKey = [max_idx,
+            item_title,
+            item_admin,
+            item_price,
+            item_first,
+            item_second,
+            item_third,
+            item_trade,
+            item_date,
+            item_stat,
+            item_comment,
+            item_kate1,
+            item_kate2,
+            '판매중',
+            0
+        ];
         dbcon.query(insertItem, insertItemKey, function (err, result) {
             if (err) {
                 console.error(err);

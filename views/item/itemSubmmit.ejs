@@ -16,8 +16,25 @@
                 <form id="submmitForm" method="post" action="/itemSubmmit" enctype="multipart/form-data">
                     <section class="input name">
                         <p id="submit_title">상품명</p>
-                        <input type="text" id="iteminputform" name='item_title' placeholder="상품명을 입력해주세요." />
+                        <input type="text" class="iteminputform" name='item_title' placeholder="상품명을 입력해주세요." />
                     </section>
+                    <section class="input kategory">
+                        <p id="submit_title">카테고리</p>
+                        <input type="text" class="iteminputform" id='item_kate' name='item_kate'
+                            placeholder="카테고리를 선택해주세요." />
+                        <div class="selectarea" style="display:none;">
+                            <div class="kategory_list" id='first_kate'>
+                                <p class='kategory_title'>전체 카테고리 &#10095;</p>
+                                <hr class='kate_line'>
+                                <ul class='kate_ul first_ul'>
+                                </ul>
+                            </div>
+                            <div class="kategory_list" id='second_kate'>
+
+                            </div>
+                        </div>
+                    </section>
+
                     <section class="input title">
                         <p id="submit_title">상품 이미지</p>
                         <div>
@@ -33,17 +50,26 @@
                     </section>
                     <section class="input price">
                         <p id="submit_title">상품 가격</p>
-                        <input type="number" id="iteminputform" name="item_price" placeholder="상품가격을 입력해주세요." />
+                        <input type="number" class="iteminputform" name="item_price" placeholder="상품가격을 입력해주세요." />
                     </section>
                     <section class="input info">
                         <p id="submit_title">상품 설명</p>
-                        <textarea id="iteminputform_info" name="item_info" placeholder="상품의 상태를 상세하게 적어주세요."></textarea>
+                        <textarea id="iteminputform_info" name="item_info" wrap="hard"
+                            placeholder="상품의 상태를 상세하게 적어주세요."></textarea>
                     </section>
                     <section class="input trade">
                         <p id="submit_title">거래방법</p>
                         <div>
-                            <label><input type="radio" name="item_trade" value="택배">택배</label>
+                            <label><input type="radio" name="item_trade" value="택배" checked>택배</label>
                             <label><input type="radio" name="item_trade" value="직거래">직거래</label>
+                        </div>
+                    </section>
+                    <section class="input stat">
+                        <p id="submit_title">상품 상태</p>
+                        <div>
+                            <label><input type="radio" name="item_stat" value="양호" checked>양호</label>
+                            <label><input type="radio" name="item_stat" value="보통">보통</label>
+                            <label><input type="radio" name="item_stat" value="불량">불량</label>
                         </div>
                     </section>
                     <div class="submit_button_area">

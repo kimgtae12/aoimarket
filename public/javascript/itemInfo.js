@@ -14,6 +14,7 @@ window.onload = function () {
 
     let itemStatLoad = $('#item_stat').text();
     let itemStat = $.trim(itemStatLoad);
+
     if (itemStat == '양호') {
         $('#item_stat').css('color', '#03C75A');
     }

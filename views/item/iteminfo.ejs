@@ -11,8 +11,12 @@
     <div class="wrapper">
         <%- include('../include/toparea') %>
             <article class="info_form">
-                <span class="kategorie">전체상품 - </span><span class="kategorie">카테고리1 - </span>
-                <a href="#"><span class="kategorie kate_result">카테고리2</span></a>
+                <span class="kategorie">전체상품 - </span><span class="kategorie">
+                    <%=item_info[0].item_kate1 %> -
+                </span>
+                <a href="#"><span class="kategorie kate_result">
+                        <%=item_info[0].item_kate2 %>
+                    </span></a>
                 <hr id="division_line">
                 <% if(item_info){ %>
                     <section class="item_moreinfo">

@@ -30,17 +30,20 @@ create table itemlist(
 alter table itemlist add column item_selling varchar(15);
 alter table itemlist add column item_coment text;
 alter table itemlist add column item_kate varchar(30);
+alter table itemlist add column item_view int;
 commit;
 update itemlist set item_stat='양호',item_coment='hello!',item_kate='인형' where item_trade='직거래';
 
 update itemlist set item_selling = '판매완료' where item_id='2';
 update itemlist set item_price =1900000 where item_id='3';
 update itemlist set item_stat = '불량' where item_id='4';
-alter table itemlist change item_coment item_comment text;
+alter table itemlist change item_kate item_kate1 varchar(20);
+
+update itemlist set item_kate2 = '뚱이';
 
 select * from itemlist;
-
-
+alter table itemlist add column item_kate2 varchar(20);
+alter table itemlist modify column item_kate2 varchar(20) after item_kate;
 drop table itemlist;
 
 alter table itemlist add (item_imgfir TEXT);

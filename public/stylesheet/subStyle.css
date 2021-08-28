@@ -228,10 +228,10 @@ input[type="number"]::-webkit-inner-spin-button {
 .input{
     margin-bottom:30px;
     display:grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 6fr;
 }
 
-#iteminputform{
+.iteminputform{
     border: 3px solid #50BCDF;
     border-radius: 0; 
     padding-left:10px;
@@ -255,3 +255,69 @@ input[type="number"]::-webkit-inner-spin-button {
     float:left;
     border:1px solid gray;
 }
+
+
+.selectarea{
+    grid-column: -2/-1;
+    border:1px solid #e2e2e2;
+    height:200px;
+    width:500px;
+    display:flex;
+}
+
+#item_kate{
+    cursor: pointer;
+}
+.kategory_title{
+    padding-left:10px;
+    margin-top:10px;
+    font-size:15px;
+    font-family:'sans-serif';
+    font-weight: bold;
+}
+.kate_ul{
+    font-size:14px;
+    color:gray;
+}
+.first_kate_list{
+    cursor: pointer;
+    margin-top:10px;
+}
+.first_kate_list:hover{
+    font-weight: bold;
+    color: #50BCDF;
+}
+.second_kate_list{
+    cursor: pointer;
+    margin-top:10px;
+}
+.second_kate_list:hover{
+    font-weight: bold;
+    color: #50BCDF;
+}
+.kate_line{
+    width:100%;
+    background-color:#e2e2e2;
+    border:1px solid #e2e2e2;
+
+}
+
+.first_selected{
+    font-weight: bold;
+    color: #50BCDF;
+}
+
+.kategory_list{
+    width:250px;
+    flex:1fr;
+    overflow: auto;
+}
+.kategory_list ul {
+    padding-left:10px;
+    margin-top:5px;
+}
+.kategory_list ul li{
+    list-style:none;
+    margin-bottom:3px;
+}
+
