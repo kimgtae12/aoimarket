@@ -62,7 +62,11 @@
                             </p>
                         </div>
                         <div class="item_info_chatarea">
-                            <p>/****** cheting area ******/</p>
+                            <div>
+                                <input id="chating_button" onclick="openWindowPop('/chating','chating')" type="button"
+                                    value="구매문의" />
+
+                            </div>
                         </div>
                     </section>
                     <hr id="division_line">
@@ -71,6 +75,45 @@
                         <textarea readonly id='info_textarea'><%= item_info[0].item_comment %></textarea>
                     </section>
                     <% } %>
+                        <section id="item_reply_area">
+                            <% if(reply){ for(let i=0; i<=reply.length-1; i++){ %>
+                                <div class="reply_first">
+                                    <div class="reply_info">
+                                        <span class="reply_id">
+                                            <%=reply[i].reply_name %>
+                                        </span><span class="reply_time">
+                                            <%=reply[i].reply_date %>
+                                        </span>
+                                    </div>
+                                    <div class="reply_update">
+                                        <span><a href="#">수정</a> <a href="#">삭제</a></span>
+                                    </div>
+                                    <p class="reply_style">
+                                        <%= reply[i].reply_contents %>
+                                    </p>
+                                    <button class='second_reply_button'>답글</button>
+                                </div>
+                                <hr class="reply_division_line">
+                                <% } } %>
+                                    <!--<div class="reply_first">
+                                <div class="reply_info">
+                                    <span class="reply_id">아이디 </span><span class="reply_time"> 댓글시간</span>
+                                </div>
+                                <div class="reply_update">
+                                    <span><a href="#">수정</a> <a href="#">삭제</a></span>
+                                </div>
+                                <p class="reply_style">여기는 원댓글여기는 원댓글여기는 원댓글여기는 원댓글여기는 원댓글여기는 원댓글</p>
+                                <button class='second_reply_button'>답글</button>
+                            </div>
+                            <hr class="reply_division_line">-->
+                                    <form action="iteminfo/reply" method='post'>
+                                        <input type="hidden" value='<%= item_info[0].item_id %>' name='item_id' />
+                                        <div class="reply_textarea">
+                                            <textarea class="input_reply" wrap="hard" name='input_reply'></textarea>
+                                        </div>
+                                        <input type="submit" class="reply_button" value="댓글등록">
+                                    </form>
+                        </section>
             </article>
 
 

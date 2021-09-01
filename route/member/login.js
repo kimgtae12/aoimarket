@@ -58,6 +58,7 @@ router.post('/', function (req, res) {
                 dbcon.query('select certifi from member where aId=?', [uId], function (er, certifi, fields) {
                     if (er) throw er;
                     if (certifi[0].certifi == 'ok') { //로그인 인증이 완료된 계정이라면 로그인.
+                        req.session.name = results[0].aName;
                         req.session.uid = results[0].aId;
                         req.session.isLogined = true;
                         req.session.save(function () {

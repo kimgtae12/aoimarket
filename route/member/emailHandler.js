@@ -18,7 +18,7 @@ module.exports = {
     //보내는사람, 받는사람의 정보를 입력해줌. 그리고 제목, 내용 입력.
     EmailVerification(email, key) {
         const mailOption = {
-            from: 'kimgtea12@gmail.com',
+            from: 'aoimarket',
             to: email,
             subject: "hello world!",
             html: "<b>vertification code: </b>" + key

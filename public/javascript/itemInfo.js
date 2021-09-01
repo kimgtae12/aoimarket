@@ -24,5 +24,9 @@ window.onload = function () {
     else if (itemStat == '불량') {
         $('#item_stat').css('color', '#f05650');
     }
-}
 
+}
+function openWindowPop(url, name) {
+    var option = 'top=10, left=10, width:400, height:300, status=no, menubar=no, toolbar=no, resizeble=no ';
+    window.open(url, name, option);
+}

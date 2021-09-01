@@ -8,6 +8,25 @@ create table mainBanner(
 );
 
 select * from mainBanner;
+select * from member;
+
+select * from itemlist;
+
+desc itemReply13;
+drop table itemReply13;
+
+create table itemReply(
+	item_id int not null,
+    reply_idx int not null,
+    par_comment int not null,
+	reply_id varchar(30) not null,
+	reply_name varchar(30) not null,
+    reply_contents text not null
+);
+alter table itemReply add column reply_date varchar(30) not null;
+select * from itemReply;
+update itemReply set reply_date = 111;
+delete from member where aid='';
 
 drop table itemlist;
 
@@ -50,6 +69,8 @@ alter table itemlist add (item_imgfir TEXT);
 alter table itemlist add (item_imgsec TEXT);
 alter table itemlist add (item_imgthi TEXT);
 alter table itemlist drop item_third;
+
+desc itemlist;
 
 insert into itemlist(item_title,item_admin,item_price,item_firstimg,item_secondimg,item_third,item_trade,item_date) values('hello','admin','12333',null,null,null,'직거래',now());
 
@@ -95,6 +116,10 @@ create table verifykey(
  aEmail varchar(20) not null,
  verifyKey varchar(20) not null
  );
+ 
+ select * from verifykey;
+ 
+ delete from verifykey;
  
  drop table verifykey;
  drop table member;

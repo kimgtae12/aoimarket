@@ -126,6 +126,7 @@ router.route('/').post(upload.array('img_name'), (req, res) => {
             throw err;
         }
         let insertItem = 'insert into itemlist values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+
         let max_idx;
         if (result[0].max_idx == 0) {
             max_idx = 0;
@@ -158,6 +159,8 @@ router.route('/').post(upload.array('img_name'), (req, res) => {
             console.log("iteminfo insert complete!");
             res.redirect('/');
         });
+
+
         console.log(result[0].max_idx);
     });
 

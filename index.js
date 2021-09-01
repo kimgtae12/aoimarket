@@ -4,15 +4,15 @@ const dbcon = require('./db/config');
 const fs = require('fs');
 const ejs = require('ejs');
 const path = require('path');
-const http = require('http');
-
-
-
-setInterval(function () {
-    http.get("http://aoimarket.herokuapp.com");
-}, 600000);
 
 const app = express();
+
+const http = require('http').Server(app);
+/*setInterval(function () {
+    http.get("http://aoimarket.herokuapp.com");
+}, 600000);*/
+
+
 
 /**
  * git add .
@@ -46,10 +46,9 @@ app.use('/iteminfo', itemInfo);
 
 const itemSubmmit = require('./route/item/itemSubmmit');
 app.use('/itemSubmmit', itemSubmmit);
+//const port = process.env.PORT;
 
-const port = process.env.PORT;
-
-//const port = 3400;
-app.listen(port, function () {
-    console.log('server on! http://localhost:' + port);
-});
+const port = process.env.PORT || 3400;
+http.listen(port, () => {
+    console.log('listening on : 3400');
+})
