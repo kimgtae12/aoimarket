@@ -76,43 +76,75 @@
                     </section>
                     <% } %>
                         <section id="item_reply_area">
-                            <% if(reply){ for(let i=0; i<=reply.length-1; i++){ %>
-                                <div class="reply_first">
-                                    <div class="reply_info">
-                                        <span class="reply_id">
-                                            <%=reply[i].reply_name %>
-                                        </span><span class="reply_time">
-                                            <%=reply[i].reply_date %>
-                                        </span>
-                                    </div>
-                                    <div class="reply_update">
-                                        <span><a href="#">수정</a> <a href="#">삭제</a></span>
-                                    </div>
-                                    <p class="reply_style">
-                                        <%= reply[i].reply_contents %>
-                                    </p>
-                                    <button class='second_reply_button'>답글</button>
-                                </div>
-                                <hr class="reply_division_line">
-                                <% } } %>
-                                    <!--<div class="reply_first">
-                                <div class="reply_info">
-                                    <span class="reply_id">아이디 </span><span class="reply_time"> 댓글시간</span>
-                                </div>
-                                <div class="reply_update">
-                                    <span><a href="#">수정</a> <a href="#">삭제</a></span>
-                                </div>
-                                <p class="reply_style">여기는 원댓글여기는 원댓글여기는 원댓글여기는 원댓글여기는 원댓글여기는 원댓글</p>
-                                <button class='second_reply_button'>답글</button>
-                            </div>
-                            <hr class="reply_division_line">-->
-                                    <form action="iteminfo/reply" method='post'>
-                                        <input type="hidden" value='<%= item_info[0].item_id %>' name='item_id' />
-                                        <div class="reply_textarea">
-                                            <textarea class="input_reply" wrap="hard" name='input_reply'></textarea>
+                            <div class="reply_wrapper">
+                                <% if(reply){ for(let i=0; i<=reply.length-1; i++){ %>
+                                    <div class="reply_first">
+                                        <div class="reply_info">
+                                            <span class="reply_id">
+                                                <%=reply[i].reply_name %>
+                                            </span><span class="reply_time">
+                                                <%=reply[i].reply_date %>
+                                            </span>
                                         </div>
-                                        <input type="submit" class="reply_button" value="댓글등록">
-                                    </form>
+                                        <div class="reply_update">
+                                            <% if(login_id !=reply[i].reply_id){ %>
+                                                <div style="visibility: hidden;">
+                                                    <% } %>
+                                                        <span><a href="#">수정</a> <a href="#">삭제</a></span>
+                                                        <% if(login_id !=reply[i].reply_id){ %>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                        <p class="reply_style">
+                                            <%= reply[i].reply_contents %>
+                                        </p>
+                                        <button onClick='openReplyArea(<%= reply[i].reply_idx%>)'
+                                            class='second_reply_button'>답글</button>
+
+
+                                        <div class="second_reply" id='second_reply<%= reply[i].reply_idx%>'
+                                            style="display:none;">
+                                            <hr class="reply_division_line">
+                                            <div class="left_area">
+                                                <p>⤷</p>
+                                            </div>
+                                            <div class="reply_area">
+                                                <p class="reply_id_area">
+                                                    <%= login_id %>
+                                                </p>
+                                                <% if(login_id) {%>
+                                                    <form method='post' action='iteminfo/second_reply'>
+                                                        <input type="hidden" value='<%=item_info[0].item_id%>'
+                                                            name='item_id'>
+                                                        <input type="hidden" value='<%=reply[i].reply_idx %>'
+                                                            name='reply_idx' />
+                                                        <textarea class="input_reply" wrap="hard"
+                                                            name='input_reply'></textarea>
+                                                        <input class="reply_button" type="submit" value="댓글 등록" />
+                                                    </form>
+                                                    <% } else{ %>
+                                                        <p class="reply_id_area"><a href="/login"
+                                                                style="text-decoration: underline;">로그인</a>후 이용해주세요.</p>
+                                                        <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="reply_division_line">
+                                    <% } } %>
+                                        <form action="iteminfo/reply" method='post' id='first_replay_form'>
+                                            <div class="input_info">
+                                                <p class="reply_id_area">
+                                                    <%= login_id %>
+                                                </p>
+                                            </div>
+                                            <input type="hidden" value='<%= item_info[0].item_id %>' name='item_id' />
+                                            <div class="reply_textarea">
+                                                <textarea class="input_reply" wrap="hard" name='input_reply'></textarea>
+                                            </div>
+                                            <input type="submit" class="reply_button" value="댓글등록">
+                                        </form>
+                            </div>
                         </section>
             </article>
 

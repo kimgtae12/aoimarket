@@ -30,3 +30,15 @@ function openWindowPop(url, name) {
     var option = 'top=10, left=10, width:400, height:300, status=no, menubar=no, toolbar=no, resizeble=no ';
     window.open(url, name, option);
 }
+
+function openReplyArea(idx) {
+    var test = '#second_reply' + idx;
+    console.log(test);
+    if ($(test).is(":visible")) {
+        $(test).slideUp();
+    }
+    else {
+        $('.second_reply').slideUp();
+        $(test).slideDown();
+    }
+}
