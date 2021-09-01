@@ -8,9 +8,9 @@ const path = require('path');
 const app = express();
 
 const http = require('http').Server(app);
-/*setInterval(function () {
+setInterval(function () {
     http.get("http://aoimarket.herokuapp.com");
-}, 600000);*/
+}, 600000);
 
 
 
