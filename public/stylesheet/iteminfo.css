@@ -155,9 +155,13 @@ textarea:focus{
 #item_reply_area{
     width:100%;
     background-color:rgba(226,226,226,0.2);
-    padding:10px;
     padding-top:20px;
     position:relative;
+}
+
+.reply_first{
+    padding-left:10px;
+    padding-right:10px;
 }
 
 .reply_info{
