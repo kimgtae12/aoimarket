@@ -7,7 +7,8 @@ const path = require('path');
 
 const app = express();
 
-const http = require('http').Server(app);
+const http = require('http');
+
 setInterval(function () {
     http.get("http://aoimarket.herokuapp.com");
 }, 600000);
@@ -49,6 +50,6 @@ app.use('/itemSubmmit', itemSubmmit);
 //const port = process.env.PORT;
 
 const port = process.env.PORT || 3400;
-http.listen(port, () => {
+app.listen(port, () => {
     console.log('listening on : 3400');
 })
