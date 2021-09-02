@@ -25,12 +25,11 @@ window.onload = function () {
         $('#item_stat').css('color', '#f05650');
     }
 
-}
-function openWindowPop(url, name) {
-    var option = 'top=10, left=10, width:400, height:300, status=no, menubar=no, toolbar=no, resizeble=no ';
-    window.open(url, name, option);
-}
+    $(document).on('click', '#update_reply', function () {
+        alert('hello!');
+    });
 
+}
 function openReplyArea(idx) {
     var test = '#second_reply' + idx;
     console.log(test);
@@ -38,7 +37,7 @@ function openReplyArea(idx) {
         $(test).slideUp();
     }
     else {
-        $('.second_reply').slideUp();
         $(test).slideDown();
     }
 }
+
