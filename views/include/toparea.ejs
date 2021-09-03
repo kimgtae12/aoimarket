@@ -1,7 +1,21 @@
+<script src="/public/javascript/topKategory.js" type='text/javascript'></script>
 <header>
     <div class="toparea">
         <span class="top_item menu">
-            <p id="menu">menu</p>
+            <a class="menu_toggle">
+                <span></span>
+            </a>
+            <div class="top_selectarea" style="display:none;">
+                <div class="top_kategory_list" id='first_kate'>
+                    <p class='top_kategory_title'>전체 카테고리 &#10095;</p>
+                    <hr class='top_kate_line'>
+                    <ul class='top_kate_ul top_first_ul'>
+                    </ul>
+                </div>
+                <div class="top_kategory_list" id='top_second_kate' style="display:none;">
+
+                </div>
+            </div>
         </span>
         <span class="top_item logo">
             <a href="javascript:moveMain()">

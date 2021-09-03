@@ -34,6 +34,7 @@ $(document).ready(function () {
     let makeup = ['드라이기', '화장품', '셀프미용', '기타 메이크업'];
     let goods = ['피규어', '브로마이드', '기타 굿즈'];
 
+    //1차 카테고리 리스트 생성
     for (let i = 0; i <= firstKate.length - 1; i++) {
         $('.kate_ul').append('<li class="first_kate_list">' + firstKate[i] + '</li>');
     }
@@ -118,7 +119,6 @@ $(document).ready(function () {
             $('#item_kate').val(select_kate + ' - ' + second_kate);
         });
     });
-
 });
 
 
