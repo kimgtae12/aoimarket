@@ -46,26 +46,33 @@
                             <h2>
                                 <%=price[0] %>원
                             </h2>
+                            <hr class="info_division">
                         </div>
                         <div class="item_info_statarea">
-                            <p>
+                            <p class="item_middle_title">
                                 제품상태 - <span id='item_stat'>
                                     <%=item_info[0].item_stat %>
                                 </span>
                             </p>
                         </div>
                         <div class="item_info_tradearea">
-                            <p>
+                            <p class="item_middle_title">
                                 거래방법 - <span id='item_trade'>
                                     <%=item_info[0].item_trade %>
                                 </span>
                             </p>
                         </div>
                         <div class="item_info_chatarea">
-                            <div>
-                                <input id="chating_button" onclick="openWindowPop('/chating','chating')" type="button"
-                                    value="구매문의" />
-
+                            <div class="item_middle_title" style="float:left;">
+                                <p>판매자정보&nbsp;-&nbsp;</p>
+                            </div>
+                            <div class="seller_info">
+                                <p>
+                                    아이디 : <%=item_info[0].item_admin%>
+                                </p>
+                                <p>
+                                    이메일 : <%=item_info[0].item_email%>
+                                </p>
                             </div>
                         </div>
                     </section>

@@ -55,7 +55,7 @@ router.route('/').get((req, res) => {
 
 
 // start join logic 
-router.route('/join_ok').post((req, res) => {
+router.route('/join_ok').post(async (req, res) => {
     res.setHeader('Content-type', 'text/html;charset=UTF-8');
 
     //사용자가 입력한 정보를 가져옴.
@@ -63,6 +63,8 @@ router.route('/join_ok').post((req, res) => {
     let join_pw = req.body.uPw;
     let join_name = req.body.uName;
     let join_email = req.body.uEmailFirst + "@" + req.body.uEmailSecond;
+    let join_phone = req.body.uPhone;
+
     console.log(req.body.uEmailSecond);
     let today = new Date();
     let join_date = today.toLocaleString().toString();
@@ -76,41 +78,71 @@ router.route('/join_ok').post((req, res) => {
 
     //sql문 작성.
     var select_id = "select aId from member where aId = ?";
+    var select_email = "select aEmail from member where aEmail = ?";
     var sql_key = "insert into verifykey values('" + join_id + "','" + join_email + "','" + key_for_verify + "')";
-    var sql_member = "insert into member values('" + join_id + "','" + join_pw + "','" + join_name + "','" + join_email + "','" + join_date + "','fail')";
+    var sql_member = "insert into member values('" + join_id + "','" + join_pw + "','" + join_name + "','" + join_email + "','" + join_phone + "','" + join_date + "','fail')";
 
-    dbcon.query(select_id, join_id, function (err, result) {
-        if (err) {
-            console.log(err);
-            throw err;
-        }
-        if (result.length > 0) {
-            res.write('<script type="text/javascript">alert("중복된 아이디가 존재합니다."); history.back();</script>');
-        }
-        else {
-            handle_email.EmailVerification(join_email, key_for_verify);
-            //인증키 테이블에 아이디와 인증키 저장.
-            dbcon.query(sql_key, function (err, result) {
-                if (err) {
-                    console.error(err);
-                    throw err
-                }
-                console.log('userkey insert complete!');
-                res.end();
-            });
-
-            //유저 정보 저장.
-            dbcon.query(sql_member, function (err, result) {
-                if (err) {
-                    console.error(err);
-                    throw err;
-                }
-                console.log("userinfo insert complete!");
-                res.end();
-            });
-            res.redirect('/emailCheck');
-        }
+    let selectId = new Promise((resolve, reject) => {
+        dbcon.query(select_id, join_id, function (err, result) {
+            if (err) {
+                reject(err);
+            }
+            if (result.length > 0) {
+                resolve(false);
+            }
+            else {
+                resolve(true);
+            }
+        });
     });
+
+    let noneOvlabId = await selectId;
+
+    let selectEmail = new Promise((resolve, reject) => {
+        dbcon.query(select_email, join_email, function (err, result) {
+            if (err) {
+                reject(err);
+            }
+            if (result.length > 0) {
+                resolve(false);
+            }
+            else {
+                resolve(true);
+            }
+        });
+    });
+
+    let noneOvlabEmail = await selectEmail;
+
+    if (noneOvlabId != true) {
+        res.write('<script type="text/javascript">alert("중복된 아이디가 존재합니다."); history.back();</script>');
+    }
+    else if (noneOvlabEmail != true) {
+        res.write('<script type="text/javascript">alert("중복된 이메일이 존재합니다."); history.back();</script>');
+    }
+    else {
+        handle_email.EmailVerification(join_email, key_for_verify);
+        //인증키 테이블에 아이디와 인증키 저장.
+        dbcon.query(sql_key, function (err, result) {
+            if (err) {
+                console.error(err);
+                throw err
+            }
+            console.log('userkey insert complete!');
+            res.end();
+        });
+
+        //유저 정보 저장.
+        dbcon.query(sql_member, function (err, result) {
+            if (err) {
+                console.error(err);
+                throw err;
+            }
+            console.log("userinfo insert complete!");
+            res.end();
+        });
+        res.redirect('/emailCheck');
+    }
 
 });
 

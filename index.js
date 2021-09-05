@@ -29,6 +29,9 @@ app.set('views', path.join(__dirname, './views'));
 const mainPage = require('./route/mainroute');
 app.use('/', mainPage);
 
+const searchPage = require('./route/searchItem');
+app.use('/searchItem', searchPage);
+
 const loginPage = require('./route/member/login');
 app.use('/login', loginPage);
 

@@ -76,6 +76,7 @@ router.route('/').get(async function (req, res) {
         for (let i = 0; i <= result.length - 1; i++) {
             price[i] = result[i].item_price.toLocaleString('ko-KR');
         }
+
         res.render('item/iteminfo', {
             login_id: req.session.uid,
             item_info: result,

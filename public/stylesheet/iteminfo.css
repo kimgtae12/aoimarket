@@ -34,7 +34,7 @@
     width:800px;
     display:grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 65px 65px 50px 50px 65px auto ;
+    grid-template-rows: 70px 65px 50px 50px 50px auto ;
 }
 
 .item_info_imgarea{
@@ -97,11 +97,15 @@
     margin:0;
     font-size:30px;
 }
+.item_middle_title{
+    font-size:15px;
+    color:#707070;
+    font-weight: bold;
+}
 .item_info_statarea{
     grid-column : 2/3;
     grid-row : 3/4;
-    font-size:15px;
-    color:#707070;
+
 }
 #item_stat{
     font-weight: bold;
@@ -110,16 +114,19 @@
 .item_info_tradearea{
     grid-column : 2/3;
     grid-row : 4/5;
-    font-size:15px;
-    color:#707070;
 }
 #item_trade{
-    font-weight: bold;;
+    font-weight: 500;
 }
 
 .item_info_chatarea{
     grid-column : 2/3;
     grid-row : 5/6;
+    display:flex;
+}
+.seller_info{
+    font-size:15px;
+    color:gray;
 }
 
 #item_info_comment h3{
@@ -128,6 +135,7 @@
 
 #info_textarea{
     width:100%;
+    height: 200px;
     border:none;
     resize: none;
     font-size:15px;
@@ -135,6 +143,14 @@
 
 textarea:focus{
     outline:none;
+}
+
+.info_division{
+    width:100%;
+    height: 1px;
+    border:none;
+    color:#e2e2e2;
+    background:#e2e2e2;
 }
 
 

@@ -3,10 +3,17 @@ $(document).ready(function () {
     $('.menu_toggle').click(function () {
         $(this).toggleClass('on');
     });
-
+    $(document).mouseup(function (e) {
+        if (!$('.top_selectarea').has(e.target).length) {
+            $('.top_selectarea').slideUp();
+            $('#top_second_kate').hide();
+        }
+    })
     $('.menu_toggle').click(function () {
+
         if ($('.top_selectarea').is(":visible")) {
             $(".top_selectarea").slideUp();
+            $('#top_second_kate').hide();
         }
         else {
             $('.top_selectarea').slideDown();
@@ -51,47 +58,47 @@ $(document).ready(function () {
         switch (select_kate) {
             case '남성의류':
                 for (let j = 0; j <= manscloth.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list">' + manscloth[j] + '</li > ');
+                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + manscloth[j] + '">' + manscloth[j] + '</a></li > ');
                 }
                 break;
             case '여성의류':
                 for (let j = 0; j <= womanscloth.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list">' + womanscloth[j] + '</li > ');
+                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + manscloth[j] + '">' + manscloth[j] + '</a></li > ');
                 }
                 break;
             case '신발':
                 for (let j = 0; j <= shoes.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list">' + shoes[j] + '</li > ');
+                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + manscloth[j] + '">' + manscloth[j] + '</a></li > ');
                 }
                 break;
             case '패션 악세서리':
                 for (let j = 0; j <= fessionac.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list">' + fessionac[j] + '</li > ');
+                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + manscloth[j] + '">' + manscloth[j] + '</a></li > ');
                 }
                 break;
             case 'IT':
                 for (let j = 0; j <= it.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list">' + it[j] + '</li > ');
+                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + manscloth[j] + '">' + manscloth[j] + '</a></li > ');
                 }
                 break;
             case '음반/악기':
                 for (let j = 0; j <= music.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list">' + music[j] + '</li > ');
+                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + manscloth[j] + '">' + manscloth[j] + '</a></li > ');
                 }
                 break;
             case '디지털/가전':
                 for (let j = 0; j <= digital.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list">' + digital[j] + '</li > ');
+                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + manscloth[j] + '">' + manscloth[j] + '</a></li > ');
                 }
                 break;
             case '뷰티/미용':
                 for (let j = 0; j <= makeup.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list">' + makeup[j] + '</li > ');
+                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + manscloth[j] + '">' + manscloth[j] + '</a></li > ');
                 }
                 break;
             case '굿즈':
                 for (let j = 0; j <= goods.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list">' + goods[j] + '</li > ');
+                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + manscloth[j] + '">' + manscloth[j] + '</a></li > ');
                 }
                 break;
 

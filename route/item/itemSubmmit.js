@@ -48,7 +48,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.route('/').post(upload.array('img_name'), (req, res) => {
+router.route('/').post(upload.array('img_name'), async (req, res) => {
 
     let today = new Date();
 
@@ -93,6 +93,16 @@ router.route('/').post(upload.array('img_name'), (req, res) => {
         console.log(req.files[i]);
     }
 
+    let getAdmin = new Promise((resolve, reject) => {
+        let selPhoneNum = 'select aPhone,aEmail from member where aId = ?'
+        dbcon.query(selPhoneNum, item_admin, function (error, results, fields) {
+            if (error) {
+                reject(error);
+            }
+            resolve(results);
+        });
+    });
+    let itemAdmin = await getAdmin;
 
     //DB Upload
     let searchIdx = 'select max(item_id) as max_idx from itemlist'
@@ -125,7 +135,7 @@ router.route('/').post(upload.array('img_name'), (req, res) => {
             console.error(err);
             throw err;
         }
-        let insertItem = 'insert into itemlist values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        let insertItem = 'insert into itemlist values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
 
         let max_idx;
         if (result[0].max_idx == 0) {
@@ -138,6 +148,8 @@ router.route('/').post(upload.array('img_name'), (req, res) => {
         let insertItemKey = [max_idx,
             item_title,
             item_admin,
+            itemAdmin[0].aPhone,
+            itemAdmin[0].aEmail,
             item_price,
             item_first,
             item_second,
