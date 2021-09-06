@@ -97,17 +97,23 @@
             </div>
             <% } } %>
                 <hr class="reply_division_line">
-                <form action="iteminfo/reply" method='post' id='first_replay_form'>
-                    <div class="input_info">
-                        <p class="reply_id_area">
-                            <%= login_id %>
+                <% if(login_id){ %>
+                    <form action="iteminfo/reply" method='post' id='first_replay_form'>
+                        <div class="input_info">
+                            <p class="reply_id_area">
+                                <%= login_id %>
+                            </p>
+                        </div>
+                        <input type="hidden" value='<%= item_info[0].item_id %>' name='item_id' />
+                        <div class="reply_textarea">
+                            <textarea class="input_reply" wrap="hard" name='input_reply'></textarea>
+                        </div>
+                        <input type="submit" class="reply_button" value="댓글등록">
+                    </form>
+                    <% }else{%>
+                        <p class="reply_id_area"><a href="/login" style="text-decoration: underline;">로그인</a>후
+                            이용해주세요.
                         </p>
-                    </div>
-                    <input type="hidden" value='<%= item_info[0].item_id %>' name='item_id' />
-                    <div class="reply_textarea">
-                        <textarea class="input_reply" wrap="hard" name='input_reply'></textarea>
-                    </div>
-                    <input type="submit" class="reply_button" value="댓글등록">
-                </form>
+                        <% } %>
     </div>
 </section>
