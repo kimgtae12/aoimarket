@@ -77,11 +77,16 @@ router.route('/').get(async function (req, res) {
             price[i] = result[i].item_price.toLocaleString('ko-KR');
         }
 
+        let imgList = [result[0].item_firstimg, result[0].item_secondimg, result[0].item_third];
+
+        console.log(imgList);
+
         res.render('item/iteminfo', {
             login_id: req.session.uid,
             item_info: result,
             price: price,
             reply: reply,
+            imgList: imgList,
             secondReply: secondReply
         });
     });

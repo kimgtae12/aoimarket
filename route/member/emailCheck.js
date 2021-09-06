@@ -4,7 +4,6 @@ const session = require('express-session');
 const user_session = require('../user_session');
 const bodyParser = require('body-parser');
 const path = require('path');
-const crypto = require('crypto');
 
 const handle_email = require('../../route/member/emailHandler');
 
@@ -36,6 +35,44 @@ router.route('/').get(function (req, res) {
         session_key: req.session.key*/,
         pass: false
     });
+});
+
+
+
+router.route('/retryEmail').get(function (req, res) {
+
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+    const stringLength = 6;
+    let randomstring = ''
+    for (let i = 0; i < stringLength; i++) {
+        const rnum = Math.floor(Math.random() * chars.length)
+        randomstring += chars.substring(rnum, rnum + 1)
+    }
+
+    let join_id = req.query.join_id;
+
+    console.log(join_id);
+    let select_query = 'select * from member where aId = ?';
+    let update_query = 'update verifykey set verifyKey = ? where aId = ? and aEmail = ?';
+
+    dbcon.query(select_query, join_id, function (err, result) {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        else {
+            let updateArray = [randomstring, join_id, result[0].aEmail];
+            handle_email.EmailVerification(result[0].aEmail, randomstring);
+            dbcon.query(update_query, updateArray, function (error) {
+                if (error) {
+                    console.log(error);
+                    throw error;
+                }
+            });
+        }
+    });
+
+    res.redirect('/emailCheck');
 });
 
 //start verify logic

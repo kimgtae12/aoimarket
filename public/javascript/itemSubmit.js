@@ -127,20 +127,23 @@ var createLayer = function () {
     // Element 생성
     var $el = $("<div class='submmit_img_list'>" +
         "<label class='img_selector'>" +
-        '<input type="file" id="imgSelector" name="img_name" accept="image/*" style="display:none;" />' +
+        '<input type="file" id="imgSelector" class="nonSel" name="img_name" accept="image/*" style="display:none;" />' +
         '</label >' +
         '</div >');
-    console.log($el);
 
     // Event 설정
-    $el.find('#imgSelector').change(function (e) {
+    $el.find('.nonSel').change(function (e) {
+        if ($(this).next().length == 0 && $(this).prevAll().length < 2) {
+            $(".input_img_area").append(createLayer());
+        }
+        console.log($(this).prevAll().length);
         let files = e.target.files;
         let filesarray = Array.prototype.slice.call(files);
 
         filesarray.forEach(function (f) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                $(".input_img_area").append(createLayer());
+
                 var img_url = e.target.result;
                 $el.find('.img_selector').css({ "background-image": "url('" + img_url + "')" });
                 $el.find('.img_selector').css("background-size", "230px 230px");
@@ -151,7 +154,6 @@ var createLayer = function () {
     }.bind($el));
     return $el;
 }
-
 
 
 

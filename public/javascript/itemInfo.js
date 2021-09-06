@@ -41,3 +41,9 @@ function openReplyArea(idx) {
     }
 }
 
+$(document).on('click', '.other_img', function () {
+    let clickImg = $(this).attr('src');
+
+    $('#select_img').attr('src', clickImg);
+})
+

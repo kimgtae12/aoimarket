@@ -117,9 +117,9 @@ router.route('/join_ok').post(async (req, res) => {
     if (noneOvlabId != true) {
         res.write('<script type="text/javascript">alert("중복된 아이디가 존재합니다."); history.back();</script>');
     }
-    else if (noneOvlabEmail != true) {
+    /*else if (noneOvlabEmail != true) {
         res.write('<script type="text/javascript">alert("중복된 이메일이 존재합니다."); history.back();</script>');
-    }
+    }*/
     else {
         handle_email.EmailVerification(join_email, key_for_verify);
         //인증키 테이블에 아이디와 인증키 저장.

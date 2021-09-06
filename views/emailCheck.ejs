@@ -15,6 +15,9 @@
             if (lastRef != "join") {
                 alert("인증이 완료되지 않은 계정입니다.");
             }
+            function popup() {
+                alert("인증코드가 재발급되었습니다.");
+            }
         </script>
 </head>
 
@@ -27,9 +30,15 @@
 
                 <section class="join_form">
                     <div class="email_intro">
-                        <p>
-                            <%= session_id %>님의 회원가입을 환영합니다.
+                        <img src="/public/img/emailIcon.png" class="email_icon">
+                        <p id="email_hello">
+                            이메일로 코드가 전송되었습니다.<br> 아래 입력창에 코드를 입력해주세요.
                         </p>
+                        <div class="retry_email">
+                            <p>혹시 이메일이 오지 않았나요?</p>
+                            <a href="emailCheck/retryEmail?join_id=<%=session_id%>" class="retryEmail"
+                                onclick="javascript:popup()">이메일 재발송</a>
+                        </div>
                     </div>
                     <form method="post" action="/emailCheck/verify">
                         <div class="form_line">

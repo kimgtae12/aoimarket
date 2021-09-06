@@ -25,12 +25,9 @@
                             </div>
                             <img id="select_img" src="<%= item_info[0].item_firstimg %>" />
                             <div class="other_imgarea">
-                                <span><img class="other_img other_first"
-                                        src="<%= item_info[0].item_firstimg %>" /></span>
-                                <span><img class="other_img other_first"
-                                        src="<%= item_info[0].item_firstimg %>" /></span>
-                                <span><img class="other_img other_first"
-                                        src="<%= item_info[0].item_firstimg %>" /></span>
+                                <%for(let i=0; i<=imgList.length-1; i++){ if(imgList[i] !=null){ %>
+                                    <span><img class="other_img other_first" src="<%= imgList[i] %>" /></span>
+                                    <% }}%>
                             </div>
                         </div>
                         <div class="item_info_titlearea">

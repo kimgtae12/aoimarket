@@ -20,7 +20,7 @@ module.exports = {
         const mailOption = {
             from: 'aoimarket',
             to: email,
-            subject: "hello world!",
+            subject: "aoimarket 회원가입 인증 메일입니다.",
             html: "<b>vertification code: </b>" + key
         }
 

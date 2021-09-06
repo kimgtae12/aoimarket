@@ -185,7 +185,24 @@ input[type="number"]::-webkit-inner-spin-button {
     width:100px !important;
 }
 
-
+.email_icon{
+    width:120px;
+    height: 80px;
+}
+.email_intro{
+    margin-bottom : 30px;
+}
+#email_hello{
+    margin-top:20px;
+}
+.retry_email{
+    margin-top:10px;
+    font-size:13px;
+}
+.retryEmail{
+    font-size:13px;
+    font-weight: bold;
+}
 
 /****** item input *****/
 #submmitForm{
