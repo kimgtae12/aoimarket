@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <%- include('../include/header') %>
+        <script src="/public/javascript/itemSubmit.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="../../public/stylesheet/subStyle.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <%- include('../include/toparea') %>
+            <article class="middle_form">
+                <h1 id="login_title">상품수정</h1>
+                <hr id="horizon_line">
+                <form id="submmitForm" method="post" action="itemUpdate?itemid=<%=result[0].item_id%>">
+                    <section class="input selling">
+                        <p id="submit_title">판매상태</p>
+                        <div>
+                            <label><input type="radio" name="item_selling" value="판매중" checked>판매중</label>
+                            <label><input type="radio" name="item_selling" value="판매완료">판매완료</label>
+                        </div>
+                    </section>
+                    <section class="input name">
+                        <p id="submit_title">상품명</p>
+                        <input type="text" class="iteminputform" name='item_title' value="<%=result[0].item_title%>"
+                            placeholder="상품명을 입력해주세요." />
+                    </section>
+                    <section class="input kategory">
+                        <p id="submit_title">카테고리</p>
+                        <input type="text" class="iteminputform" id='item_kate' name='item_kate'
+                            value="<%=result[0].item_kate1%> - <%=result[0].item_kate2%>" placeholder="카테고리를 선택해주세요." />
+                        <div class="selectarea" style="display:none;">
+                            <div class="kategory_list" id='first_kate'>
+                                <p class='kategory_title'>전체 카테고리 &#10095;</p>
+                                <hr class='kate_line'>
+                                <ul class='kate_ul first_ul'>
+                                </ul>
+                            </div>
+                            <div class="kategory_list" id='second_kate'>
+
+                            </div>
+                        </div>
+                    </section>
+                    <section class="input price">
+                        <p id="submit_title">상품 가격</p>
+                        <input type="number" class="iteminputform" value="<%=result[0].item_price%>" name="item_price"
+                            placeholder="상품가격을 입력해주세요." />
+                    </section>
+                    <section class="input info">
+                        <p id="submit_title">상품 설명</p>
+                        <textarea id="iteminputform_info" name="item_info" wrap="hard"
+                            placeholder="상품의 상태를 상세하게 적어주세요."><%=result[0].item_comment%></textarea>
+                    </section>
+                    <section class="input trade">
+                        <p id="submit_title">거래방법</p>
+                        <div>
+                            <label><input type="radio" name="item_trade" value="택배" checked>택배</label>
+                            <label><input type="radio" name="item_trade" value="직거래">직거래</label>
+                        </div>
+                    </section>
+                    <section class="input stat">
+                        <p id="submit_title">상품 상태</p>
+                        <div>
+                            <label><input type="radio" name="item_stat" value="양호" checked>양호</label>
+                            <label><input type="radio" name="item_stat" value="보통">보통</label>
+                            <label><input type="radio" name="item_stat" value="불량">불량</label>
+                        </div>
+                    </section>
+                    <div class="submit_button_area">
+                        <input type="button" id="home_button" class="join_button cancle" value="취소">
+                        <input type="submit" class="join_button access" value="상품수정">
+                    </div>
+                </form>
+            </article>
+    </div>
+</body>
+
+</html>

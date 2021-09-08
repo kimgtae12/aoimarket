@@ -50,7 +50,9 @@ app.use('/iteminfo', itemInfo);
 
 const itemSubmmit = require('./route/item/itemSubmmit');
 app.use('/itemSubmmit', itemSubmmit);
-//const port = process.env.PORT;
+
+const myPage = require('./route/member/mypage');
+app.use('/mypage', myPage);
 
 const port = process.env.PORT || 3400;
 app.listen(port, () => {

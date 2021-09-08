@@ -5,6 +5,11 @@
     <%- include('../include/header') %>
         <link href="/public/stylesheet/iteminfo.css" rel="stylesheet">
         <script src="/public/javascript/itemInfo.js" type='text/javascript'></script>
+        <script>
+            function deletealter() {
+                alert('상품삭제가 완료되었습니다.');
+            }
+        </script>
 </head>
 
 <body>
@@ -35,8 +40,14 @@
                                 <span id='selling'>
                                     <%=item_info[0].item_selling %>
                                 </span>
-                                </span>
                                 <%=item_info[0].item_title %>
+                                    <% if(login_id==item_info[0].item_admin) { %>
+                                        <span class="update_info">
+                                            <a href="iteminfo/updateinfo?itemid=<%=item_info[0].item_id%>">수정</a>
+                                            <a href="iteminfo/deleteinfo?itemid=<%=item_info[0].item_id%>"
+                                                onclick="javascript:deletealter()">삭제</a>
+                                        </span>
+                                        <% } %>
                             </p>
                         </div>
                         <div class="item_info_pricearea">

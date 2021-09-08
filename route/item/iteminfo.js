@@ -79,8 +79,6 @@ router.route('/').get(async function (req, res) {
 
         let imgList = [result[0].item_firstimg, result[0].item_secondimg, result[0].item_third];
 
-        console.log(imgList);
-
         res.render('item/iteminfo', {
             login_id: req.session.uid,
             item_info: result,
@@ -91,6 +89,70 @@ router.route('/').get(async function (req, res) {
         });
     });
 
+});
+
+
+router.route('/updateinfo').get(async function (req, res) {
+
+    let itemId = req.query.itemid;
+
+    let viewItemInfo = 'select * from itemlist where item_id = ?';
+
+    dbcon.query(viewItemInfo, itemId, function (error, result) {
+        if (error) {
+            console.log(error);
+            throw error;
+        }
+        let img_list = [result[0].item_firstimg, result[0].item_secondimg, result[0].item_third]
+        res.render('item/updateinfo', {
+            login_id: req.session.uid,
+            result: result,
+            imglist: img_list
+        });
+    });
+});
+
+router.route('/itemUpdate').post(function (req, res) {
+
+    let itemId = req.query.itemid;
+    let itemSelling = req.body.item_selling;
+    let itemTitle = req.body.item_title;
+    let kate = req.body.item_kate;
+
+    let split_kate = kate.split(' - ');
+    let itemKate1 = split_kate[0];
+    let itemKate2 = split_kate[1];
+
+    let itemPrice = req.body.item_price;
+    let itemInfo = req.body.item_info;
+    let itemTrade = req.body.item_trade;
+    let itemStat = req.body.item_stat;
+    let today = new Date();
+    let itemDate = today.toLocaleString().toString();
+
+    let updateVar = [
+        itemTitle,
+        itemPrice,
+        itemDate,
+        itemTrade,
+        itemStat,
+        itemInfo,
+        itemKate1,
+        itemKate2,
+        itemSelling,
+        itemId
+    ];
+
+
+    let updateItemInfo = 'update itemlist set item_title = ?, item_price = ?, item_date = ?,item_trade=?, item_stat = ?, item_comment = ?, item_kate1 = ?, item_kate2 = ?, item_selling = ? where item_id = ?';
+
+    dbcon.query(updateItemInfo, updateVar, function (error) {
+        if (error) {
+            console.log(error);
+            throw error;
+        }
+        res.redirect('/iteminfo?itemid=' + itemId);
+    });
 });
 
 router.route('/reply').post(function (req, res) {
@@ -138,7 +200,6 @@ router.route('/reply').post(function (req, res) {
             }
         })
     });
-
     res.redirect('/iteminfo?itemid=' + item_id);
 });
 
@@ -183,7 +244,6 @@ router.route('/second_reply').post(function (req, res) {
             });
         }
     });
-
     res.redirect('/iteminfo?itemid=' + item_id);
 });
 
@@ -217,7 +277,30 @@ router.route('/secondDelete').get(function (req, res) {
         }
     });
     res.redirect('/iteminfo?itemid=' + itemidx);
-})
+});
+
+router.route('/deleteinfo').get(function (req, res) {
+
+    let deleteidx = req.query.itemid;
+
+    let deleteItem = "delete from itemlist where item_id = ?";
+    let deleteReply = "delete from itemReply where item_id = ?";
+
+    dbcon.query(deleteItem, deleteidx, function (err) {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+    });
+    dbcon.query(deleteReply, deleteidx, function (err) {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+    });
+
+    res.redirect('/mypage');
+});
 
 
 

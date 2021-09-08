@@ -89,6 +89,12 @@
     font-weight:normal;
     line-height: 80px;
 }
+
+.update_info a{
+    font-size:13px;
+    color:gray;
+}
+
 .item_info_pricearea{
     grid-column : 2/3;
     grid-row : 2/3;

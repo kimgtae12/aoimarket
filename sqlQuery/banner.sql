@@ -9,8 +9,8 @@ create table mainBanner(
 
 select * from mainBanner;
 select * from member;
-alter table itemlist add column item_PhoneNum varchar(30) after aEmail;
-
+alter table itemlist add column item_Eamil varchar(30) after item_PhoneNum;
+alter table itemlist change item_eamil item_email varchar(30);
 
 select * from itemlist where replace(item_title,' ','') like '%치킨피자%';
 
@@ -25,8 +25,10 @@ create table itemReply(
     par_comment int not null,
 	reply_id varchar(30) not null,
 	reply_name varchar(30) not null,
-    reply_contents text not null
+    reply_contents text not null,
+    reply_date varchar(30) not null
 );
+select * from itemReply;
 alter table itemReply add column reply_date varchar(30) not null;
 select * from itemReply order by item_id,reply_idx asc;
 update itemReply set reply_date = 111;
