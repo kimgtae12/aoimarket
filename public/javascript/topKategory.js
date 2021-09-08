@@ -54,51 +54,53 @@ $(document).ready(function () {
         $('#top_second_kate').empty();
         $('#top_second_kate').append(second_kate);
 
+        let litag = '<li class="top_second_kate_list">';
+
         //두번째 카테고리에 li el 추가
         switch (select_kate) {
             case '남성의류':
                 for (let j = 0; j <= manscloth.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + manscloth[j] + '">' + manscloth[j] + '</a></li > ');
+                    $('.top_second_ul').append(litag + '<a href="kateSearch?kate1=' + select_kate + '&kate2=' + manscloth[j] + '">' + manscloth[j] + '</a></li > ');
                 }
                 break;
             case '여성의류':
                 for (let j = 0; j <= womanscloth.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + womanscloth[j] + '">' + womanscloth[j] + '</a></li > ');
+                    $('.top_second_ul').append(litag + '<a href="kateSearch?kate1=' + select_kate + '&kate2=' + womanscloth[j] + '">' + womanscloth[j] + '</a></li > ');
                 }
                 break;
             case '신발':
                 for (let j = 0; j <= shoes.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + shoes[j] + '">' + shoes[j] + '</a></li > ');
+                    $('.top_second_ul').append(litag + '<a href="kateSearch?kate1=' + select_kate + '&kate2=' + shoes[j] + '">' + shoes[j] + '</a></li > ');
                 }
                 break;
             case '패션 악세서리':
                 for (let j = 0; j <= fessionac.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + fessionac[j] + '">' + fessionac[j] + '</a></li > ');
+                    $('.top_second_ul').append(litag + '<a href="kateSearch?kate1=' + select_kate + '&kate2=' + fessionac[j] + '">' + fessionac[j] + '</a></li > ');
                 }
                 break;
             case 'IT':
                 for (let j = 0; j <= it.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + it[j] + '">' + it[j] + '</a></li > ');
+                    $('.top_second_ul').append(litag + '<a href="kateSearch?kate1=' + select_kate + '&kate2=' + it[j] + '">' + it[j] + '</a></li > ');
                 }
                 break;
             case '음반/악기':
                 for (let j = 0; j <= music.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + music[j] + '">' + music[j] + '</a></li > ');
+                    $('.top_second_ul').append(litag + '<a href="kateSearch?kate1=' + select_kate + '&kate2=' + music[j] + '">' + music[j] + '</a></li > ');
                 }
                 break;
             case '디지털/가전':
                 for (let j = 0; j <= digital.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + digital[j] + '">' + digital[j] + '</a></li > ');
+                    $('.top_second_ul').append(litag + '<a href="kateSearch?kate1=' + select_kate + '&kate2=' + digital[j] + '">' + digital[j] + '</a></li > ');
                 }
                 break;
             case '뷰티/미용':
                 for (let j = 0; j <= makeup.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + makeup[j] + '">' + makeup[j] + '</a></li > ');
+                    $('.top_second_ul').append(litag + '<a href="kateSearch?kate1=' + select_kate + '&kate2=' + makeup[j] + '">' + makeup[j] + '</a></li > ');
                 }
                 break;
             case '굿즈':
                 for (let j = 0; j <= goods.length - 1; j++) {
-                    $('.top_second_ul').append('<li class="top_second_kate_list"><a href="searchItem?itemName=' + goods[j] + '">' + goods[j] + '</a></li > ');
+                    $('.top_second_ul').append(litag + '<a href="kateSearch?kate1=' + select_kate + '&kate2=' + goods[j] + '">' + goods[j] + '</a></li > ');
                 }
                 break;
 

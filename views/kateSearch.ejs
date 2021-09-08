@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <%- include('include/header') %>
+        <link href="/public/stylesheet/iteminfo.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <%- include('include/toparea') %>
+            <article class="info_form">
+                <span class="kategorie">전체상품 - </span><span class="kategorie">
+                    <%=kate1%> -
+                </span>
+                <a href="#"><span class="kategorie kate_result">
+                        <%=kate2 %>
+                    </span></a>
+                <hr id="division_line">
+            </article>
+
+            <% if(data.length> 0) { %>
+                <article class="item_list">
+                    <% for(var i=0; i<=data.length-1; i++) { %>
+                        <section class="item_info">
+
+                            <a href="/iteminfo?itemid=<%=data[i].item_id%>">
+
+                                <div class="item_img">
+                                    <% if(data[i].item_selling=="판매완료" ){%>
+                                        <div class="completearea">
+                                            판매완료
+                                        </div>
+                                        <% } %>
+                                            <img src="<%= data[i].item_firstimg %>" />
+                                </div>
+                                <div class="item_title">
+                                    <p id="item_name">
+                                        <%= data[i].item_title %>
+                                    </p>
+                                    <p id="item_price">
+                                        <%= price[i] %>원
+                                    </p>
+                                </div>
+                            </a>
+                        </section>
+                        <% } %>
+                </article>
+                <% }else {%>
+                    <div class="none_item">
+                        <img id="none_itemimg" src="/public/img/item/noneitem.png" />
+                        <p>등록된 상품이 존재하지 않습니다!</p>
+                    </div>
+                    <% } %>
+    </div>
+    <% if(login_id) { %>
+        <div class="regi_item">
+            <button id="regi_button" onClick='itemSubmmit()'>상품등록</button>
+        </div>
+        <% } %>
+            </div>
+</body>

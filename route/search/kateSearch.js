@@ -1,9 +1,9 @@
 const { response } = require('express');
 const express = require('express');
-const dbcon = require('../db/config');
+const dbcon = require('../../db/config');
 const session = require('express-session');
-const user_session = require('./user_session');
-const { search } = require('./mainroute');
+const user_session = require('../user_session');
+const { search } = require('../mainroute');
 
 const router = express.Router();
 const app = express();
@@ -18,11 +18,13 @@ router.use(session({
 
 
 router.route('/').get(async function (req, res) {
-    let searchKeyword = "%" + req.query.itemName + "%";
-    let renderKeyword = searchKeyword.replace(/%/g, "");
-    let itemSelQuery = 'select * from itemlist where replace(item_title," ","") like ? or replace(item_kate1,"/","") like ? or replace(item_kate2,"/","") like ?';
+    let kate1 = req.query.kate1;
+    let kate2 = req.query.kate2;
+
+    let itemSelQuery = 'select * from itemlist where item_kate1 = ? and item_kate2 = ?';
+
     let getitemlist = new Promise((resolve, reject) => {
-        selectArray = [searchKeyword, searchKeyword, searchKeyword]
+        selectArray = [kate1, kate2]
         dbcon.query(itemSelQuery, selectArray, function (error, results, fields) {
             if (error) {
                 reject(error);
@@ -36,11 +38,12 @@ router.route('/').get(async function (req, res) {
     for (let i = 0; i <= results.length - 1; i++) {
         price[i] = results[i].item_price.toLocaleString('ko-KR');
     }
-    res.render('searchItem', {
+    res.render('kateSearch', {
         data: results,
         price: price,
         login_id: req.session.uid,
-        search_item: renderKeyword
+        kate1: kate1,
+        kate2: kate2
     });
 });
 

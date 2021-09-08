@@ -31,7 +31,7 @@
             <div class="item_area">
                 <span class="list_title first">아오이</span>
                 <span class="list_title second">추천상품</span>
-                <% if(data.length-1> 0){ %>
+                <% if(data.length> 0) { %>
                     <article class="item_list">
                         <% for(var i=0; i<=data.length-1; i++) { %>
                             <section class="item_info">
@@ -56,9 +56,9 @@
                                     </div>
                                 </a>
                             </section>
-                            <% }%>
+                            <% } %>
                     </article>
-                    <% } else {%>
+                    <% }else {%>
                         <div class="none_item">
                             <img id="none_itemimg" src="/public/img/item/noneitem.png" />
                             <p>등록된 상품이 존재하지 않습니다!</p>

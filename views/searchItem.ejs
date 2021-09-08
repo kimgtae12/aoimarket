@@ -19,14 +19,20 @@
                     <%=search_item%>
                 </span>
                 <span class="list_title second">검색결과 입니다.</span>
-                <% if(data.length-1>0){ %>
+                <% if(data.length> 0) { %>
                     <article class="item_list">
                         <% for(var i=0; i<=data.length-1; i++) { %>
                             <section class="item_info">
 
                                 <a href="/iteminfo?itemid=<%=data[i].item_id%>">
+
                                     <div class="item_img">
-                                        <img src="<%= data[i].item_firstimg %>" />
+                                        <% if(data[i].item_selling=="판매완료" ){%>
+                                            <div class="completearea">
+                                                판매완료
+                                            </div>
+                                            <% } %>
+                                                <img src="<%= data[i].item_firstimg %>" />
                                     </div>
                                     <div class="item_title">
                                         <p id="item_name">
@@ -40,7 +46,7 @@
                             </section>
                             <% } %>
                     </article>
-                    <% } else {%>
+                    <% }else {%>
                         <div class="none_item">
                             <img id="none_itemimg" src="/public/img/item/noneitem.png" />
                             <p>등록된 상품이 존재하지 않습니다!</p>
