@@ -3,6 +3,7 @@ const dbcon = require('../../db/config');
 const session = require('express-session');
 const user_session = require('../user_session');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt-nodejs');
 
 const router = express.Router();
 
@@ -52,25 +53,31 @@ router.post('/', function (req, res) {
 
     // start login logic
     if (uId && uPw) {
-        dbcon.query('select * from member where aId = ? AND aPw = ?', [uId, uPw], function (error, results, fields) {
+        dbcon.query('select * from member where aId = ?', [uId], function (error, results, fields) {
             if (error) throw error;
             if (results.length > 0) {
-                dbcon.query('select certifi from member where aId=?', [uId], function (er, certifi, fields) {
-                    if (er) throw er;
-                    if (certifi[0].certifi == 'ok') { //로그인 인증이 완료된 계정이라면 로그인.
-                        req.session.name = results[0].aName;
-                        req.session.uid = results[0].aId;
-                        req.session.isLogined = true;
-                        req.session.save(function () {
-                            res.redirect('/');
-                        });
-                    }
-                    else { //그렇지 않을경우 이메일 인증사이트로 이동.
-                        res.write("<script type='text/javascript'>location.href='/emailCheck'</script>");
-                    }
-                });
-                //session store -> redirect
-
+                if (!bcrypt.compareSync(uPw, results[0].aPw)) {
+                    res.send('<script type="text/javascript">' +
+                        'alert("비밀번호가 일치하지 않습니다.");' +
+                        'document.location.href="/login";</script>');
+                }
+                else {
+                    dbcon.query('select certifi from member where aId=?', [uId], function (er, certifi, fields) {
+                        if (er) throw er;
+                        if (certifi[0].certifi == 'ok') { //로그인 인증이 완료된 계정이라면 로그인.
+                            req.session.name = results[0].aName;
+                            req.session.uid = results[0].aId;
+                            req.session.isLogined = true;
+                            req.session.save(function () {
+                                res.redirect('/');
+                            });
+                        }
+                        else { //그렇지 않을경우 이메일 인증사이트로 이동.
+                            res.write("<script type='text/javascript'>location.href='/emailCheck'</script>");
+                        }
+                    });
+                    //session store -> redirect
+                }
             } else { //아이디와 비밀번호가 틀렸다면?
                 res.send('<script type="text/javascript">' +
                     'alert("로그인정보가 존재하지 않습니다.");' +

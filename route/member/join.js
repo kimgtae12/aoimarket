@@ -5,6 +5,7 @@ const user_session = require('../user_session');
 const bodyParser = require('body-parser');
 const path = require('path');
 const crypto = require('crypto');
+const bcrypt = require('bcrypt-nodejs');
 
 //emailHandler의 모듈을 가져옴.
 const handle_email = require('../member/emailHandler');
@@ -65,7 +66,6 @@ router.route('/join_ok').post(async (req, res) => {
     let join_email = req.body.uEmailFirst + "@" + req.body.uEmailSecond;
     let join_phone = req.body.uPhone;
 
-    console.log(req.body.uEmailSecond);
     let today = new Date();
     let join_date = today.toLocaleString().toString();
 
@@ -80,9 +80,10 @@ router.route('/join_ok').post(async (req, res) => {
     var select_id = "select aId from member where aId = ?";
     var select_email = "select aEmail from member where aEmail = ?";
     var sql_key = "insert into verifykey values('" + join_id + "','" + join_email + "','" + key_for_verify + "')";
-    var sql_member = "insert into member values('" + join_id + "','" + join_pw + "','" + join_name + "','" + join_email + "','" + join_phone + "','" + join_date + "','fail')";
+
 
     let selectId = new Promise((resolve, reject) => {
+
         dbcon.query(select_id, join_id, function (err, result) {
             if (err) {
                 reject(err);
@@ -117,9 +118,9 @@ router.route('/join_ok').post(async (req, res) => {
     if (noneOvlabId != true) {
         res.write('<script type="text/javascript">alert("중복된 아이디가 존재합니다."); history.back();</script>');
     }
-    else if (noneOvlabEmail != true) {
+    /*else if (noneOvlabEmail != true) {
         res.write('<script type="text/javascript">alert("중복된 이메일이 존재합니다."); history.back();</script>');
-    }
+    }*/
     else {
         handle_email.EmailVerification(join_email, key_for_verify);
         //인증키 테이블에 아이디와 인증키 저장.
@@ -133,13 +134,16 @@ router.route('/join_ok').post(async (req, res) => {
         });
 
         //유저 정보 저장.
-        dbcon.query(sql_member, function (err, result) {
-            if (err) {
-                console.error(err);
-                throw err;
-            }
-            console.log("userinfo insert complete!");
-            res.end();
+        bcrypt.hash(join_pw, null, null, function (err, hash) {
+            var sql_member = "insert into member values('" + join_id + "','" + hash + "','" + join_name + "','" + join_email + "','" + join_phone + "','" + join_date + "','fail')";
+            dbcon.query(sql_member, function (err, result) {
+                if (err) {
+                    console.error(err);
+                    throw err;
+                }
+                console.log("userinfo insert complete!");
+                res.end();
+            });
         });
         res.redirect('/emailCheck');
     }
