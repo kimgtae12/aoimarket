@@ -1,11 +1,11 @@
 const mysql = require('mysql');
 
 var dbcon = mysql.createConnection({
-    host: '34.64.89.241',
+    host: 'host',
     user: 'aoiadmin',
-    password: 'rlarudxo12',
+    password: 'aoipassword',
     database: 'aoimarket',
-    port: 3306
+    port: aoiport
 });
 
 module.exports = dbcon;
